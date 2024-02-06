@@ -15,7 +15,7 @@ janela.geometry("500x400")
 textodeorientacao = Label(janela, text="Welcome to the FamilyApp", font="Arial 16")
 textodeorientacao.pack(anchor=CENTER, pady=60, padx=10) #usar pack com anchor=center para centralizar a mensagem
 
-botao_pessoas = Button(janela, text="Pessoas da Família", width=20, command=Pessoas)
+botao_pessoas = Button(janela, text="Pessoas da Família", width=20, command=pessoas)
 botao_pessoas.pack(padx=10, pady=5)
 
 botao_lista_compras = Button(janela, text="Lista de Compras", width=20, command=listaCompras)
