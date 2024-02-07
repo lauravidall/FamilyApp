@@ -24,7 +24,7 @@ botao_lista_compras.pack(padx=10, pady=5)
 botao_eventos = Button(janela, text="Eventos", width=20, command=eventos)
 botao_eventos.pack(padx=10, pady=5)
 
-botao_lista_tarefas = Button(janela, text="Tarefas", width=20, command=listaTarefas)
+botao_lista_tarefas = Button(janela, text=" Lista de Tarefas", width=20, command=listaTarefas)
 botao_lista_tarefas.pack(padx=10, pady=5)
 
 
