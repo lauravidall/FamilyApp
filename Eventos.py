@@ -20,10 +20,10 @@ def eventos():
     entrada_eventos = Entry(janela_eventos, width=50)
     entrada_eventos.pack(padx=10, pady=5)
 
-    botao_eventos = Button(janela_eventos, text="Adicionar Membro", width=20, command=lambda: adicionar(entrada_eventos, listbox_eventos))
+    botao_eventos = Button(janela_eventos, text="Adicionar Evento", width=20, command=lambda: adicionar(entrada_eventos, listbox_eventos))
     botao_eventos.pack(padx=10, pady=5)
 
-    botao_eventos = Button(janela_eventos, text="Deletar Membro", width=20, command=lambda: deletar(listbox_eventos))
+    botao_eventos = Button(janela_eventos, text="Deletar Evento", width=20, command=lambda: deletar(listbox_eventos))
     botao_eventos.pack(padx=10, pady=5)
 
     janela_eventos.mainloop()
@@ -36,5 +36,15 @@ def adicionar(entrada, listbox):
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um evento na barra de entrada")
 
-def deletar():
+def deletar(listbox):
+    try:
+        index_eventos = listbox.curselection()[0]
+        listbox.delete(index_eventos)
+    except:
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu mouse")
+
+def salvar():
+    return
+
+def carregar():
     return
