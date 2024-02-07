@@ -36,5 +36,15 @@ def adicionar(entrada, listbox):
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um produto na barra de entrada")
 
-def deletar():
+def deletar(listbox):
+    try:
+        index_compras = listbox.curselection()[0]
+        listbox.delete(index_compras)
+    except:
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um produto com seu cursor")
+
+def salvar():
+    return
+
+def carregar():
     return
