@@ -33,10 +33,10 @@ def listaTarefas():
     janela_lista_Tarefas.mainloop()
 
 def adicionar(tarefa, nome, listbox):
-    tarefa = tarefa.get()
-    nome = nome.get()
-    if tarefa and nome:
-        item = f"{tarefa} - {nome}"
+    entrada_tarefa = tarefa.get()
+    entrada_nome = nome.get()
+    if entrada_tarefa and entrada_nome:
+        item = f"{entrada_tarefa} - {entrada_nome}"
         listbox.insert(END, item)
         tarefa.delete(0, END)
         nome.delete(0, END)
