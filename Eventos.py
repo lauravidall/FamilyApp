@@ -41,7 +41,7 @@ def deletar(listbox):
         index_eventos = listbox.curselection()[0]
         listbox.delete(index_eventos)
     except:
-        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu mouse")
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um evento com seu mouse")
 
 def salvar():
     return
