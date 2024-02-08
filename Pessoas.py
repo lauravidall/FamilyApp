@@ -26,27 +26,50 @@ def pessoas():
     botao_pessoas = Button(janela_pessoas, text="Deletar Membro", width=20, command=lambda: deletar(listbox_pessoas))
     botao_pessoas.pack(padx=10, pady=5)
 
+    leitura_txt(listbox_pessoas)
+
     janela_pessoas.mainloop()
 
 def adicionar(entrada, listbox):
     pessoa = entrada.get()
     if pessoa != "" and pessoa != " ":
-        listbox.insert(END, pessoa)
+        item = f"{pessoa}\n"
         with open("pessoas.txt", 'a', encoding="utf-8") as file:
-            file.write(pessoa)
+            file.write(item)
+        listbox.insert(END, item)
         entrada.delete(0, END)
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um nome na barra de entrada")
 
+# def deletar(listbox):
+#     try:
+#         index_pessoa = listbox.curselection()[0]
+#         listbox.delete(index_pessoa)
+#     except:
+#         tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu cursor")
+
 def deletar(listbox):
     try:
-        index_pessoa = listbox.curselection()[0]
-        listbox.delete(index_pessoa)
-    except:
-        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu cursor")
+        index_pessoas = listbox.curselection()[0]
+        item_selecionado = listbox.get(index_pessoas) + "\n"
+        listbox.delete(index_pessoas)
 
-def salvar():
-    return
+        with open("pessoas.txt", 'r', encoding="utf-8") as file:
+            linhas = file.readlines()
+        
+        with open("pessoas.txt", 'w', encoding="utf-8") as file:
+            for linha in linhas:
+                if linha != item_selecionado:
+                    file.write(linha)
 
-def carregar():
-    return
+    except IndexError:
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione uma pessoa com o cursor.")
+        
+def leitura_txt(listbox):
+    try:
+        with open("pessoas.txt", 'r', encoding="utf-8") as file:
+            linhas = file.readlines()
+            for linha in linhas:
+                listbox.insert(END, linha.strip())
+    except FileNotFoundError:
+        pass
