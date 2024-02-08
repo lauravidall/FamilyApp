@@ -47,29 +47,29 @@ def adicionar(tarefa, nome, listbox):
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Por favor, preencha tanto o nome da tarefa quanto o nome da pessoa.")
 
-def deletar(listbox):
-    try:
-        index_pessoa = listbox.curselection()[0]
-        listbox.delete(index_pessoa)
-    except:
-        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu cursor")
-
 # def deletar(listbox):
 #     try:
-#         index_Tarefas = listbox.curselection()[0]
-#         item_selecionado = listbox.get(index_Tarefas) + "\n"
-#         listbox.delete(index_Tarefas)
-
-#         with open("tasks.txt", 'r', encoding="utf-8") as file:
-#             linhas = file.readlines()
-#         linhas.remove(item_selecionado)
-#         novalinhas = linhas
-
-#         with open("tasks.txt", 'w', encoding="utf-8") as file:
-#             file.writelines(novalinhas)
-
+#         index_pessoa = listbox.curselection()[0]
+#         listbox.delete(index_pessoa)
 #     except:
-#         tkinter.messagebox.showwarning(title="Erro!", message="Selecione um tarefa com seu cursor")
+#         tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu cursor")
+
+def deletar(listbox):
+    try:
+        index_Tarefas = listbox.curselection()[0]
+        item_selecionado = listbox.get(index_Tarefas) + "\n"
+        listbox.delete(index_Tarefas)
+
+        with open("tarefas.txt", 'r', encoding="utf-8") as file:
+            linhas = file.readlines()
+        
+        with open("tarefas.txt", 'w', encoding="utf-8") as file:
+            for linha in linhas:
+                if linha != item_selecionado:
+                    file.write(linha)
+
+    except IndexError:
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione uma tarefa com o cursor.")
         
 def leitura_txt(listbox):
     try:
