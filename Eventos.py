@@ -26,27 +26,50 @@ def eventos():
     botao_eventos = Button(janela_eventos, text="Deletar Evento", width=20, command=lambda: deletar(listbox_eventos))
     botao_eventos.pack(padx=10, pady=5)
 
+    leitura_txt(listbox_eventos)
+
     janela_eventos.mainloop()
 
 def adicionar(entrada, listbox):
     evento = entrada.get()
     if evento != "" and evento != " ":
-        listbox.insert(END, evento)
+        item = f"{evento}\n"
         with open("eventos.txt", 'a', encoding="utf-8") as file:
-            file.write(evento)
+            file.write(item)
+        listbox.insert(END, item)
         entrada.delete(0, END)
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um evento na barra de entrada")
 
+# def deletar(listbox):
+#     try:
+#         index_eventos = listbox.curselection()[0]
+#         listbox.delete(index_eventos)
+#     except:
+#         tkinter.messagebox.showwarning(title="Erro!", message="Selecione um evento com seu cursor")
+        
 def deletar(listbox):
     try:
         index_eventos = listbox.curselection()[0]
+        item_selecionado = listbox.get(index_eventos) + "\n"
         listbox.delete(index_eventos)
-    except:
-        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um evento com seu cursor")
 
-def salvar():
-    return
+        with open("eventos.txt", 'r', encoding="utf-8") as file:
+            linhas = file.readlines()
+        
+        with open("eventos.txt", 'w', encoding="utf-8") as file:
+            for linha in linhas:
+                if linha != item_selecionado:
+                    file.write(linha)
 
-def carregar():
-    return
+    except IndexError:
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um evento com o cursor.")
+        
+def leitura_txt(listbox):
+    try:
+        with open("eventos.txt", 'r', encoding="utf-8") as file:
+            linhas = file.readlines()
+            for linha in linhas:
+                listbox.insert(END, linha.strip())
+    except FileNotFoundError:
+        pass
