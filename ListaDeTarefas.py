@@ -30,6 +30,8 @@ def listaTarefas():
     botao_lista_Tarefas = Button(janela_lista_Tarefas, text="Deletar Tarefa", width=20, command=lambda: deletar(listbox_lista_Tarefas))
     botao_lista_Tarefas.pack(padx=10, pady=5)
 
+    leitura_txt(listbox_lista_Tarefas)
+
     janela_lista_Tarefas.mainloop()
 
 def adicionar(tarefa, nome, listbox):
@@ -52,8 +54,17 @@ def deletar(listbox):
     except:
         tkinter.messagebox.showwarning(title="Erro!", message="Selecione um tarefa com seu cursor")
 
-def salvar():
-    return
+# def salvar():
+#     return
 
-def carregar():
-    return
+# def carregar():
+#     return
+        
+def leitura_txt(listbox):
+    try:
+        with open("tarefas.txt", 'r', encoding="utf-8") as file:
+            linhas = file.readlines()
+            for linha in linhas:
+                listbox.insert(END, linha.strip())
+    except FileNotFoundError:
+        pass
