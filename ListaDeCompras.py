@@ -32,6 +32,8 @@ def adicionar(entrada, listbox):
     produto = entrada.get()
     if produto != "" and produto != " ":
         listbox.insert(END, produto)
+        with open("produtos.txt", 'a', encoding="utf-8") as file:
+            file.write(produto)
         entrada.delete(0, END)
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um produto na barra de entrada")

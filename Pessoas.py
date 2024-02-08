@@ -32,6 +32,8 @@ def adicionar(entrada, listbox):
     pessoa = entrada.get()
     if pessoa != "" and pessoa != " ":
         listbox.insert(END, pessoa)
+        with open("pessoas.txt", 'a', encoding="utf-8") as file:
+            file.write(pessoa)
         entrada.delete(0, END)
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um nome na barra de entrada")

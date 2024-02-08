@@ -29,9 +29,11 @@ def eventos():
     janela_eventos.mainloop()
 
 def adicionar(entrada, listbox):
-    produto = entrada.get()
-    if produto != "" and produto != " ":
-        listbox.insert(END, produto)
+    evento = entrada.get()
+    if evento != "" and evento != " ":
+        listbox.insert(END, evento)
+        with open("eventos.txt", 'a', encoding="utf-8") as file:
+            file.write(evento)
         entrada.delete(0, END)
     else:
         tkinter.messagebox.showwarning(title="Erro!", message="Escreva um evento na barra de entrada")

@@ -37,6 +37,8 @@ def adicionar(tarefa, nome, listbox):
     entrada_nome = nome.get()
     if entrada_tarefa and entrada_nome:
         item = f"{entrada_tarefa} - {entrada_nome}"
+        with open("tarefas.txt", 'a', encoding="utf-8") as file:
+            file.write(item)
         listbox.insert(END, item)
         tarefa.delete(0, END)
         nome.delete(0, END)
