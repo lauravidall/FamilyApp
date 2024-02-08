@@ -38,7 +38,7 @@ def adicionar(tarefa, nome, listbox):
     entrada_tarefa = tarefa.get()
     entrada_nome = nome.get()
     if entrada_tarefa and entrada_nome:
-        item = f"{entrada_tarefa} - {entrada_nome}"
+        item = f"{entrada_tarefa} - {entrada_nome}\n"
         with open("tarefas.txt", 'a', encoding="utf-8") as file:
             file.write(item)
         listbox.insert(END, item)
@@ -49,16 +49,27 @@ def adicionar(tarefa, nome, listbox):
 
 def deletar(listbox):
     try:
-        index_Tarefas = listbox.curselection()[0]
-        listbox.delete(index_Tarefas)
+        index_pessoa = listbox.curselection()[0]
+        listbox.delete(index_pessoa)
     except:
-        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um tarefa com seu cursor")
+        tkinter.messagebox.showwarning(title="Erro!", message="Selecione um nome com seu cursor")
 
-# def salvar():
-#     return
+# def deletar(listbox):
+#     try:
+#         index_Tarefas = listbox.curselection()[0]
+#         item_selecionado = listbox.get(index_Tarefas) + "\n"
+#         listbox.delete(index_Tarefas)
 
-# def carregar():
-#     return
+#         with open("tasks.txt", 'r', encoding="utf-8") as file:
+#             linhas = file.readlines()
+#         linhas.remove(item_selecionado)
+#         novalinhas = linhas
+
+#         with open("tasks.txt", 'w', encoding="utf-8") as file:
+#             file.writelines(novalinhas)
+
+#     except:
+#         tkinter.messagebox.showwarning(title="Erro!", message="Selecione um tarefa com seu cursor")
         
 def leitura_txt(listbox):
     try:
